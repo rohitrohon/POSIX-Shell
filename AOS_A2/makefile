@@ -2,7 +2,8 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Iinclude
 
 SRCS = src/main.cpp src/prompt.cpp src/utils.cpp src/parser.cpp \
-       src/builtins.cpp src/exec.cpp src/pinfo.cpp src/history.cpp src/jobs.cpp src/signals.cpp
+       src/builtins.cpp src/exec.cpp src/pinfo.cpp src/history.cpp src/jobs.cpp src/signals.cpp \
+       src/search.cpp src/redir.cpp
 
 OBJDIR = build
 OBJS = $(SRCS:src/%.cpp=$(OBJDIR)/%.o)

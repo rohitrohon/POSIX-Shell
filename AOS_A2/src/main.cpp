@@ -94,10 +94,19 @@ int main(int argc, char* argv[]) {
             if (cmd_name == "cd") builtin_cd(parsed_stages[0].argv.data());
             else if (cmd_name == "pwd") builtin_pwd();
             else if (cmd_name == "echo") builtin_echo(parsed_stages[0].argv.data());
+            else if (cmd_name == "ls") {
+                builtin_ls(parsed_stages[0].argv.data());
+            }
+            else if (cmd_name == "search") {
+                builtin_search(parsed_stages[0].argv.data());
+            }
+            //pinfo in pinfo.cpp
             else if (cmd_name == "pinfo") {
                 pid_t pid = parsed_stages[0].argv[1] ? stoi(parsed_stages[0].argv[1]) : 0;
                 pinfo(pid);
-            } //show_history in history.cpp
+            } 
+            //else if (cmd_name == "search") builtin_search(parsed_stages[0].argv.data());
+            //show_history in history.cpp
             else if (cmd_name == "history") {
                 int n = 10;
                 if (parsed_stages[0].argv[1]) 

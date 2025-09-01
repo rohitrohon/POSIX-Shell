@@ -4,18 +4,18 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 struct Parsed {
-    vector<char*> argv;
-    string infile;
-    string outfile;
-    bool append;
-    bool background;
+    std::vector<char*> argv; // null-terminated vector for execvp
+    std::string infile;      // input redirection file ("" if none)
+    std::string outfile;     // output redirection file ("" if none)
+    bool append = false;     // true if >>
+    bool background = false; // true if trailing &
 };
 
-vector<string> split_semicolons(const string& line);
-Parsed tokenize_cmd(const string& cmdline);
-void free_parsed(Parsed& p);
+Parsed tokenize_cmd(const std::string& s);      // parse a single stage string
+std::vector<Parsed> parse_pipeline_line(const std::string& line); // split by | and parse
+std::vector<std::string> split_semicolons(const std::string& line);
+
+void free_parsed(Parsed &p); // free argv pointers (strdup used)
 
 #endif
